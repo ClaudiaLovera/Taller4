@@ -1,12 +1,10 @@
 package Taller4;
 import ucn.ArchivoEntrada;
-import ucn.ArchivoSalida;
 import ucn.*;
-import java.io.File;
-import java.io.FileNotFoundException;
 import ucn.Registro;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class Main {
@@ -86,43 +84,58 @@ public class Main {
     }
 
 
-    public static void leerArchivo() throws IOException{
+    public static void leerArchivo(SistemaPokedex sistemaPokedex) throws IOException{
         ArchivoEntrada archivoEntrada = new ArchivoEntrada("kanto.txt");
 
-        List<String> listaPokemon = new ArrayList<>();
-
-
         while (!archivoEntrada.isEndFile()) {
+
             Registro registro = archivoEntrada.getRegistro();
+            if(registro != null){
 
-            int id = registro.getInt();
-            String nombre = registro.getString();
-            String etapa = registro.getString();
-            String evoSiguiente = registro.getString();
-            String evoPrevia = registro.getString();
-            String tipo1 = registro.getString();
-            String tipo2 = registro.getString();
+                ArrayList<String> lista = new ArrayList<>();
+                String id = registro.getString();
+                String nombre = registro.getString();
+                String etapa = registro.getString();
+                String evoSiguiente = registro.getString();
+                String evoPrevia = registro.getString();
+                String tipo1 = registro.getString();
+                String tipo2 = registro.getString();
 
-            listaPokemon.add(nombre);
-        }
-        archivoEntrada.close();
+               agregarPokemon(id,nombre,etapa,evoSiguiente,evoPrevia,tipo1,tipo2,sistemaPokedex);
 
-        Collections.sort(listaPokemon, new Comparator<String>() {
-            public int compare(String linea1, String linea2) {
-                return linea1.compareToIgnoreCase(linea2);
+
+
+
             }
-        });
+            }
+            
 
-        // Imprimir líneas ordenadas
-        for (String linea : listaPokemon) {
-            System.out.println(linea);
         }
 
-    }
+
+
+
+
+
 
     public static void main(String[] args) throws IOException {
-        leerArchivo();
+        SistemaPokedex sistemaPokedex = new SistemaPokedexImpl();
+        sistemasPrincipales(sistemaPokedex);
+
     }
+
+    private static boolean agregarPokemon(String id,String nombre, String etapa, String evolucionSiguiente, String evolucionPrevia, String tipo1, String tipo2, SistemaPokedex sistemaPokedex){
+        return true;
+    }
+
+    public static void sistemasPrincipales(SistemaPokedex sistemaPokedex) throws IOException {
+        leerArchivo(sistemaPokedex);
+        StdOut.println();
+
+    }
+
+
+
 
 
 }
