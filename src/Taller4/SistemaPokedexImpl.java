@@ -48,6 +48,7 @@ public class SistemaPokedexImpl implements SistemaPokedex{
     public boolean agregarPokemon(String id, String nombre, String etapa, String evolucionSiguiente, String evolucionPrevia, String tipo1, String tipo2) {
 
         return this.listaPokemon.agregar(new Pokemon(id, nombre, etapa, evolucionSiguiente, evolucionPrevia, tipo1, tipo2));
+
     }
 
 

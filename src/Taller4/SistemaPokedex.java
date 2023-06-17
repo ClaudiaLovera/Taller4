@@ -19,6 +19,5 @@ public interface SistemaPokedex {
     public boolean agregarPokemon(String id,String nombre, String etapa, String evolucionSiguiente, String evolucionPrevia, String tipo1, String tipo2);
 
 
-
-
+    String[] ordenarAlfabeticamente();
 }

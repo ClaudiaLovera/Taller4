@@ -1,13 +1,13 @@
 package Taller4;
 
-import com.sun.management.UnixOperatingSystemMXBean;
-
 /**
  * Clase que contiene los pokemones
  */
 public class ListaPokemon {
 
     private NodoPokemon head;
+    private NodoPokemon tail;
+
     private int tamanio;
 
     /**
@@ -15,6 +15,7 @@ public class ListaPokemon {
      */
     public ListaPokemon() {
         this.head = null;
+        this.tail = null;
         this.tamanio = 0;
     }
 
@@ -25,36 +26,31 @@ public class ListaPokemon {
         if (estaVacia())
         {
             this.head = nuevoNodo;
-            this.head.setSiguiente(this.head);
-            this.head.setAnterior(this.head);
+            this.tail = nuevoNodo;
             this.tamanio++;
             return true;
         }
+
         nuevoNodo.setSiguiente(this.head);
-        nuevoNodo.setAnterior(this.head.getAnterior());
-        this.head.getAnterior().setSiguiente(nuevoNodo);
         this.head.setAnterior(nuevoNodo);
         this.tamanio++;
         return true;
     }
 
-    public NodoPokemon buscar(String nombre)
+    public boolean buscar(String nombre)
     {
-        if (estaVacia())
-        {
-            return null;
+        if (estaVacia()) {
+            return false;
         }
         NodoPokemon aux = this.head;
-        while (aux.getSiguiente() != this.head)
-        {
-            if (aux.getPokemon().getNombre().equalsIgnoreCase(nombre))
-            {
-                break;
+        for(aux = this.head; aux != null;aux =aux.getSiguiente()){
+            if(aux.getPokemon().getNombre().equalsIgnoreCase(nombre)){
+                return true;
             }
-            aux = aux.getSiguiente();
-        }
-        return aux.getPokemon().getNombre().equalsIgnoreCase(nombre) ? aux : null;
 
+        }
+
+        return false;
     }
 
     public NodoPokemon buscar(int posicion){

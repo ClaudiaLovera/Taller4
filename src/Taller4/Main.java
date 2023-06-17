@@ -1,10 +1,9 @@
 package Taller4;
+import edu.princeton.cs.stdlib.StdPicture;
 import ucn.ArchivoEntrada;
 import ucn.*;
 import ucn.Registro;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 
 
 public class Main {
@@ -26,8 +25,8 @@ public class Main {
 
             opcion = StdIn.readString();
             switch(opcion){
-                case "A" -> desplegarPorRango();
-                case "B" -> desplegarTodo();
+                case "A" -> desplegarPorRango(sistemaPokedex);
+                case "B" -> desplegarTodo(sistemaPokedex);
                 case "C" -> desplegarPorTipo();
                 case "D" -> desplegarPrimeraEvolucion();
                 case "E" -> MenuBusquedaPersonalizada();
@@ -39,18 +38,60 @@ public class Main {
 
     }
 
-    public static void desplegarPorRango(){
+    public static void desplegarPorRango(SistemaPokedex sistemaPokedex){
+        int opcion;
+        StdOut.println("""
+                ****DESPLEGAR POR RANGO****
+                
+                Ingrese el rango maximo que desea ver ->
+                
+                """);
+        opcion = StdIn.readInt();
+
+        while(opcion < 152 && opcion > 0){
+            StdOut.println();
+
+        }
+        StdOut.println("Rango invalido, ingrese su opcion nuevamente");
+        return;
+
 
     }
-    public static void desplegarTodo(){
+    public static void desplegarTodo(SistemaPokedex sistemaPokedex){
+        StdOut.println("""
+                ****Desplegando pokemon (Ordenados alfabeticamente)****
+                
+                """);
+        String[] vecInfo = sistemaPokedex.ordenarAlfabeticamente();
+        if(vecInfo == null)
+        {
+            StdOut.println("[!][!] No hay pokemon en la pokedex [!][!]");
+                    return;
+        }
+        for (String nombre : vecInfo)
+        {
+            StdOut.println("\n"+nombre);
+        }
+
 
     }
 
     public static void desplegarPorTipo(){
+        String opcion;
+        StdOut.println("""
+                ****DESPLEGAR POR TIPO****
+                
+                Ingrese el tipo que desea ver ->
+                
+                """);
+        opcion = StdIn.readString();
+
+
 
     }
 
     public static void desplegarPrimeraEvolucion(){
+        //Usar arrayList para guardar los pokemon que tienen primera evolucion
 
     }
     public static void MenuBusquedaPersonalizada(){
@@ -92,7 +133,6 @@ public class Main {
             Registro registro = archivoEntrada.getRegistro();
             if(registro != null){
 
-                ArrayList<String> lista = new ArrayList<>();
                 String id = registro.getString();
                 String nombre = registro.getString();
                 String etapa = registro.getString();
@@ -102,7 +142,6 @@ public class Main {
                 String tipo2 = registro.getString();
 
                agregarPokemon(id,nombre,etapa,evoSiguiente,evoPrevia,tipo1,tipo2,sistemaPokedex);
-
 
 
 
@@ -127,9 +166,14 @@ public class Main {
     private static boolean agregarPokemon(String id,String nombre, String etapa, String evolucionSiguiente, String evolucionPrevia, String tipo1, String tipo2, SistemaPokedex sistemaPokedex){
         return true;
     }
+    private static boolean ordenarAlfabeticamente(){
+        return true;
+
+    }
 
     public static void sistemasPrincipales(SistemaPokedex sistemaPokedex) throws IOException {
         leerArchivo(sistemaPokedex);
+        menuPrincipal(sistemaPokedex);
         StdOut.println();
 
     }
