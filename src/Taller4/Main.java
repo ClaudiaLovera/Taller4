@@ -5,7 +5,8 @@ import ucn.*;
 import ucn.Registro;
 import java.io.IOException;
 
-
+//Claudia Lovera 21.08.288-3
+//Antonia Flores 21.202.798-7
 public class Main {
     public static void menuPrincipal(SistemaPokedex sistemaPokedex){
         SistemaPokedex sistemaPokedex1 = new SistemaPokedexImpl();
