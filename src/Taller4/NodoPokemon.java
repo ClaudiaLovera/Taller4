@@ -1,7 +1,6 @@
 package Taller4;
 
 public class NodoPokemon {
-
     private Pokemon pokemon;
     private NodoPokemon siguiente;
     private NodoPokemon anterior;

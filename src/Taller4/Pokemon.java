@@ -106,5 +106,4 @@ public class Pokemon {
         return tipo2;
     }
 
-
 }
